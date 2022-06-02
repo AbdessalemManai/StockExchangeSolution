@@ -9,6 +9,26 @@
       "Symbol": "FB",
       "Name": "C3.ai, Inc.",
       "LastPrice": "18.55"
+    },
+    {
+      "Symbol": "MSFT",
+      "Name": "Microsoft Corporation",
+      "LastPrice": "269.68"
+    },
+    {
+      "Symbol": "CHWY",
+      "Name": "Chewy, Inc.",
+      "LastPrice": "28.39"
+    },
+    {
+      "Symbol": "MDB",
+      "Name": "MongoDB, Inc.",
+      "LastPrice": "284.50"
+    },
+    {
+      "Symbol": "HPE",
+      "Name": "Hewlett Packard Enterprise Company",
+      "LastPrice": "14.94"
     }
   ]
 }

@@ -1,14 +1,13 @@
-using StockExchange.Data.Database;
-using Microsoft.EntityFrameworkCore;
-using StockExchange.Api.Options;
-using StockExchange.Api.Controllers.Infrastructure;
-using HubOne.Fundamentals.Identity.API.Extensions;
 using Extensions.Hosting.AsyncInitialization;
-using StockExchange.Domain.TickerAggregate;
-using StockExchange.Data.Domain.Tickers;
+using HubOne.Fundamentals.Identity.API.Extensions;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using StockExchange.Api.Controllers.Infrastructure;
+using StockExchange.Application.Tickers.FindTickerBySymbol;
+using StockExchange.Data.Database;
+using StockExchange.Data.Domain.Tickers;
+using StockExchange.Domain.TickerAggregate;
 using System.Reflection;
-using StockExchange.Application.Tickers.FindTrickerBySymbol;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("CustomTickers.json", false, true);
@@ -27,7 +26,7 @@ builder.Services.AddDbContext<StockExchangeDbContext>(options =>
               ),
               ServiceLifetime.Transient);
 builder.Services.AddCustomTickersOptions(configuration);
-builder.Services.AddAsyncInitializer<SeederSeedInitializer>();
+builder.Services.AddAsyncInitializer<SeedInitializer>();
 
 //Add CQRS
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
@@ -39,6 +38,8 @@ builder.Services.AddScoped<ITickerRepository, TickerRepository>();
 builder.Services.AddMediatR(typeof(FindTickerBySymbolHandler).GetTypeInfo().Assembly);
 
 var app = builder.Build();
+
+//Launch Seeder 
 using (var scope = app.Services.CreateAsyncScope())
 {
     var dbInitializer = scope.ServiceProvider.GetRequiredService<IAsyncInitializer>();
@@ -59,4 +60,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-

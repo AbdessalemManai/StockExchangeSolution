@@ -6,8 +6,18 @@ using System;
 
 namespace HubOne.Fundamentals.Identity.API.Extensions
 {
+    /// <summary>
+    /// Class <see cref="CustomTickersOptionsExtensions"/> of CustomTickers Options.
+    /// </summary>
     internal static class CustomTickersOptionsExtensions
     {
+        /// <summary>
+        /// Get settings from json file and map to class.
+        /// </summary>
+        /// <param name="services">services</param>
+        /// <param name="configuration">configuration</param>
+        /// <returns>services</returns>
+        /// <exception cref="ArgumentNullException">id configuration is null</exception>
         internal static IServiceCollection AddCustomTickersOptions(this IServiceCollection services, IConfiguration configuration)
         {
             if (configuration == null)

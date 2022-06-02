@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace StockExchange.Domain.TickerAggregate;
 
-namespace StockExchange.Domain.TickerAggregate
+/// <summary>
+/// Interface <see cref="ITickerRepository"/> containing methods of Ticker.
+/// </summary>
+public interface ITickerRepository
 {
-    public interface ITickerRepository
-    {
-
-        Task<Ticker?> GetTickerBySymbolAsync(string symbol, CancellationToken cancellationToken, Guid? tenantId = null);
-
-    }
+    /// <summary>
+    /// Get Ticker By Symbol.
+    /// </summary>
+    /// <param name="symbol">symbol</param>
+    /// <param name="cancellationToken">ct</param>
+    /// <returns>Ticker</returns>
+    Task<Ticker?> GetTickerBySymbolAsync(string symbol, CancellationToken cancellationToken);
 }

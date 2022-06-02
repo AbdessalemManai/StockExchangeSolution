@@ -1,32 +1,33 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using StockExchange.Data.Domain.Tickers;
 using StockExchange.Domain.TickerAggregate;
 
 namespace StockExchange.Data.Database;
 
+/// <summary>
+/// Class <see cref="StockExchangeDbContext"/>.
+/// </summary>
 public class StockExchangeDbContext : DbContext
 {
+    /// <summary>
+    /// Default Schema.
+    /// </summary>
     public const string DEFAULTSCHEMA = "StackEx";
 
     private readonly string _schema;
 
     /// <summary>
-    /// DbSet Settings.
+    /// DbSet Tickers.
     /// </summary>
     public DbSet<Ticker> Tickers { get; set; }
 
     /// <summary>
-    /// Le filtre automatique sur les entités supprimées logiquement est-il actif ?
+    /// Constructor of StockExchangeDbContext.
     /// </summary>
-    public bool IsDeletedQueryFilterEnabled { get; }
-
-    public StockExchangeDbContext(DbContextOptions options ) : base(options)
+    /// <param name="options"></param>
+    public StockExchangeDbContext(DbContextOptions options) : base(options)
     {
- 
     }
-
- 
 
     ///<inheritdoc/>
     protected override void OnModelCreating(ModelBuilder builder)
@@ -36,10 +37,5 @@ public class StockExchangeDbContext : DbContext
         new TickerEntityTypeConfiguration().Configure(builder.Entity<Ticker>());
 
         base.OnModelCreating(builder);
-
-
     }
-
-
-   
 }

@@ -1,13 +1,13 @@
-﻿namespace StockExchange.Api.Options;
+﻿namespace StockExchange.Application.Tickers.FindTickerBySymbol;
 
 /// <summary>
-/// Class <see cref="CustomTickers"/>
+/// Classe <see cref="TickerDto"/>.
 /// </summary>
-[Serializable]
-public class CustomTickers
-{    /// <summary>
-     /// Symbol
-     /// </summary>
+public class TickerDto
+{
+    /// <summary>
+    /// Symbol
+    /// </summary>
     public string Symbol { get; set; }
 
     /// <summary>
