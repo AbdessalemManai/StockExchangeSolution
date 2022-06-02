@@ -1,0 +1,14 @@
+{
+  "CustomTickers": [
+    {
+      "Symbol": "AI",
+      "Name": "Available",
+      "LastPrice": "188.64"
+    },
+    {
+      "Symbol": "FB",
+      "Name": "C3.ai, Inc.",
+      "LastPrice": "18.55"
+    }
+  ]
+}
