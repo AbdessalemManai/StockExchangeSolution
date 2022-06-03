@@ -5,7 +5,7 @@ using StockExchange.Application.Tickers.FindTickerBySymbol;
 namespace StockExchange.Api.Controllers;
 
 /// <summary>
-///Class <see cref="TickerController"/> 
+///Class <see cref="TickerController"/>
 /// </summary>
 [ApiController]
 [Route("[controller]")]
@@ -26,18 +26,18 @@ public class TickerController
     /// <summary>
     /// Get Ticker by symbol.
     /// </summary>
-    /// <param name="symbol"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
+    /// <param name="symbol">symbol</param>
+    /// <param name="cancellationToken">ct</param>
+    /// <returns>TickerDto</returns>
     [HttpGet("{symbol}")]
     public async Task<IActionResult> Get(string symbol, CancellationToken cancellationToken)
     {
-        Task<TickerDto?> tickerDto = _mediator.Send(new FindTickerBySymbolQuery(symbol), cancellationToken);
+        TickerDto? tickerDto = await _mediator.Send(new FindTickerBySymbolQuery(symbol), cancellationToken).ConfigureAwait(false);
 
-        if (tickerDto.Result == null)
+        if (tickerDto == null)
         {
             return new NotFoundObjectResult(string.Format("The ticker with symbol '{0}' does not exist!", symbol));
         }
-        return new OkObjectResult(tickerDto.Result);
+        return new OkObjectResult(tickerDto);
     }
 }
