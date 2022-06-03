@@ -29,6 +29,10 @@ public class TickerController
     /// <param name="symbol">symbol</param>
     /// <param name="cancellationToken">ct</param>
     /// <returns>TickerDto</returns>
+    /// <response code="200">Ticker is returned.</response>
+    /// <response code="404">Ticker is not found.</response>
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [HttpGet("{symbol}")]
     public async Task<IActionResult> Get(string symbol, CancellationToken cancellationToken)
     {
