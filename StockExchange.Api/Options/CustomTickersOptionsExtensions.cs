@@ -4,34 +4,33 @@ using Microsoft.Extensions.DependencyInjection;
 using StockExchange.Api.Options;
 using System;
 
-namespace HubOne.Fundamentals.Identity.API.Extensions
+namespace StockExchange.Api.Options;
+
+/// <summary>
+/// Class <see cref="CustomTickersOptionsExtensions"/> of CustomTickers Options.
+/// </summary>
+internal static class CustomTickersOptionsExtensions
 {
     /// <summary>
-    /// Class <see cref="CustomTickersOptionsExtensions"/> of CustomTickers Options.
+    /// Get settings from json file and map to class.
     /// </summary>
-    internal static class CustomTickersOptionsExtensions
+    /// <param name="services">services</param>
+    /// <param name="configuration">configuration</param>
+    /// <returns>services</returns>
+    /// <exception cref="ArgumentNullException">id configuration is null</exception>
+    internal static IServiceCollection AddCustomTickersOptions(this IServiceCollection services, IConfiguration configuration)
     {
-        /// <summary>
-        /// Get settings from json file and map to class.
-        /// </summary>
-        /// <param name="services">services</param>
-        /// <param name="configuration">configuration</param>
-        /// <returns>services</returns>
-        /// <exception cref="ArgumentNullException">id configuration is null</exception>
-        internal static IServiceCollection AddCustomTickersOptions(this IServiceCollection services, IConfiguration configuration)
+        if (configuration == null)
         {
-            if (configuration == null)
-            {
-                throw new ArgumentNullException(nameof(configuration));
-            }
-
-            var options = new CustomTickersOptions
-            {
-                CustomTickers = configuration.GetSection(CustomTickersOptions.ConfigurationPropertyName)?.Get<CustomTickers[]>()
-            };
-            services.AddSingleton(options);
-
-            return services;
+            throw new ArgumentNullException(nameof(configuration));
         }
+
+        var options = new CustomTickersOptions
+        {
+            CustomTickers = configuration.GetSection(CustomTickersOptions.ConfigurationPropertyName)?.Get<CustomTickers[]>()
+        };
+        services.AddSingleton(options);
+
+        return services;
     }
 }

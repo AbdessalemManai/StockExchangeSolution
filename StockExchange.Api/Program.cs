@@ -1,8 +1,8 @@
 using Extensions.Hosting.AsyncInitialization;
-using HubOne.Fundamentals.Identity.API.Extensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using StockExchange.Api.Controllers.Infrastructure;
+using StockExchange.Api.Options;
 using StockExchange.Application.Tickers.FindTickerBySymbol;
 using StockExchange.Data.Database;
 using StockExchange.Data.Domain.Tickers;
